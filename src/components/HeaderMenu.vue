@@ -32,11 +32,7 @@
   <div v-if="showModal">
     <Modal @close="toggleModal">
       <template v-slot>
-        <Form />
-      </template>
-      <template v-slot:links>
-        <button>Cancel</button>
-        <button class="main">Save</button>
+        <Form @close="toggleModal" />
       </template>
     </Modal>
   </div>
@@ -55,9 +51,9 @@ export default {
   },
   methods: {
     toggleModal() {
-      this.showModal = !this.showModal
-    }
-  }
+      this.showModal = !this.showModal;
+    },
+  },
 };
 </script>
 
