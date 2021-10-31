@@ -180,6 +180,11 @@ export default {
   padding-bottom: 10px;
 }
 
+.card-item::-webkit-scrollbar-track {
+    border-radius: 12px;
+    background: #abc837;
+}
+
 .card h2 {
   text-align: center;
   margin-bottom: 20px;

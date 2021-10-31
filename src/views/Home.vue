@@ -24,13 +24,13 @@ export default {
       taskItems: [
         {
             "id": 1,
-            "title": "Create Web Design",
+            "title": "Create Web Design ",
             "note": "It must be match with brand guidline",
             "dateFinish": ""
         },
         {
             "id": 2,
-            "title": "Create new homepage banner",
+            "title": "Create new homepage banner Create new homepagipsum",
             "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumd",
             "dateFinish": ""
         },

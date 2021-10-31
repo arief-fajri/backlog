@@ -5,6 +5,7 @@
       type="text"
       placeholder="Some task..."
       v-model="task"
+      :class="{warning: task.length > 50}"
       required
     />
     <div class="count">
@@ -14,6 +15,7 @@
     <textarea
       placeholder="Some text notes..."
       v-model="note"
+      :class="{warning: note.length > 50}"
     ></textarea>
     <div class="count">
       <small>{{ noteLeft }}</small>
@@ -93,6 +95,11 @@ textarea {
   border-radius: 8px;
   background-color: #f8f8f8;
   resize: none;
+}
+
+.warning {
+    background-color: #ffd5d5;
+    border: 2px solid #aa0000;
 }
 
 .modal .actions {

@@ -5,6 +5,7 @@
       type="text"
       placeholder="Some task..."
       v-model="task"
+      :class="{warning: task.length > 50}"
       required
     />
     <div class="count">
@@ -14,6 +15,7 @@
     <textarea
       placeholder="Some text notes..."
       v-model="note"
+      :class="{warning: note.length > 150}"
     ></textarea>
     <div class="count">
       <small>{{ noteLeft }}</small>
@@ -39,6 +41,7 @@ export default {
     return {
       task: this.taskItem.title,
       note: this.taskItem.note,
+      isNoteLimit: false,
     };
   },
   methods: {
@@ -46,8 +49,7 @@ export default {
       this.$emit("close");
     },
     handleSubmit() {
-      this.task = "";
-      this.note = "";
+      this.$emit("close");
     },
   },
   computed: {
@@ -94,6 +96,11 @@ textarea {
   border-radius: 8px;
   background-color: #f8f8f8;
   resize: none;
+}
+
+.warning {
+    background-color: #ffd5d5;
+    border: 2px solid #aa0000;
 }
 
 .modal .actions {
