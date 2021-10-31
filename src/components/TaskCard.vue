@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-btn">
-      <div class="default-btn flex-btn">
+      <div class="default-btn flex-btn" @click="deleteTask">
         <svg
           height="25"
           width="25"
@@ -33,7 +33,7 @@
           />
         </svg>
       </div>
-      <div class="default-btn flex-btn">
+      <div class="default-btn flex-btn" @click="editTask">
         <svg
           height="23"
           width="23"
@@ -63,7 +63,13 @@ export default {
   props: ['task'],
   methods: {
     markCompleted() {
-      console.log(this.task.title)
+      console.log("Mark Completed: "+this.task.title)
+    },
+    deleteTask() {
+      console.log("Delete Task: "+this.task.title)
+    },
+    editTask() {
+      console.log("Edit Task: "+this.task.title)
     },
   },
 };
