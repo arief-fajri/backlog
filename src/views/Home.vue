@@ -1,20 +1,10 @@
 <template>
   <div class="home">
     <ul class="filter">
-      <li class="filter-active">ALL</li>
-      <li>Tightest</li>
-      <li>Priority</li>
-      <li>Normal</li>
-      <li>Unregulated</li>
+      <li class="filter-active">In Progress</li>
+      <li>Completed</li>
     </ul>
     <div class="card-grid">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
       <Card />
     </div>
   </div>
@@ -44,7 +34,7 @@ export default {
   border-radius: 20px;
   font-weight: bold;
   font-size: 16px;
-  border: 3px solid #5a2ca0;
+  border: 3px solid #abc837;
   cursor: pointer;
 }
 
@@ -53,7 +43,7 @@ export default {
 }
 
 .filter-active {
-  background: #5a2ca0;
+  background: #abc837;
   color: white;
 }
 
@@ -62,6 +52,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
-  margin: 40px auto;
+  margin: 30px auto 40px;
 }
 </style>

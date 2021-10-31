@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="menu-item" @click="toggleModal">
     <svg
       width="50"
       height="50"
@@ -29,14 +29,40 @@
       </g>
     </svg>
   </div>
+  <div v-if="showModal">
+    <Modal @close="toggleModal">
+      <template v-slot>
+        <Form />
+      </template>
+      <template v-slot:links>
+        <button>Cancel</button>
+        <button class="main">Save</button>
+      </template>
+    </Modal>
+  </div>
 </template>
 
 <script>
-export default {};
+import Modal from "./Modal.vue";
+import Form from "./Form.vue";
+
+export default {
+  components: { Modal, Form },
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
+    }
+  }
+};
 </script>
 
-<style scoped>
-div {
-    cursor: pointer;
+<style>
+.menu-item {
+  cursor: pointer;
 }
 </style>>
