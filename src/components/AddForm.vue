@@ -1,19 +1,33 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <label>Task:</label>
-    <input type="text" placeholder="Some task..." v-model="task" />
+    <input
+      type="text"
+      placeholder="Some task..."
+      v-model="task"
+      required
+    />
     <div class="count">
       <small>{{ taskLeft }}</small>
     </div>
     <label>Note:</label>
-    <textarea placeholder="Some text notes..." v-model="note"></textarea>
+    <textarea
+      placeholder="Some text notes..."
+      v-model="note"
+    ></textarea>
     <div class="count">
       <small>{{ noteLeft }}</small>
     </div>
 
     <div class="actions">
-      <button type="button" @click="closeModal">Cancel</button>
-      <button type="submit" class="main">Save</button>
+      <button
+        type="button"
+        @click="closeModal"
+      >Cancel</button>
+      <button
+        type="submit"
+        class="main"
+      >Save</button>
     </div>
   </form>
 </template>

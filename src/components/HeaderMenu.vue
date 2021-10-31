@@ -45,7 +45,7 @@
 
 <script>
 import Modal from "./Modal.vue";
-import Form from "./Form.vue";
+import Form from "./AddForm.vue";
 
 export default {
   components: { Modal, Form },

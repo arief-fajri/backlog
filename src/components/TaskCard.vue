@@ -1,7 +1,10 @@
 <template>
   <div class="card">
     <div class="card-btn">
-      <div class="default-btn flex-btn" @click="deleteTask">
+      <div
+        class="default-btn flex-btn"
+        @click="deleteTask"
+      >
         <svg
           height="25"
           width="25"
@@ -19,7 +22,10 @@
           />
         </svg>
       </div>
-      <div class="main-btn flex-btn" @click="markCompleted">
+      <div
+        class="main-btn flex-btn"
+        @click="markCompleted"
+      >
         <svg
           height="40"
           width="40"
@@ -33,7 +39,10 @@
           />
         </svg>
       </div>
-      <div class="default-btn flex-btn" @click="editTask">
+      <div
+        class="default-btn flex-btn"
+        @click="editTask"
+      >
         <svg
           height="23"
           width="23"
@@ -56,20 +65,38 @@
       </p>
     </div>
   </div>
+
+  <div v-if="showModal">
+    <Modal @close="toggleModal">
+      <Form @close="toggleModal" :taskItem="task"/>
+    </Modal>
+  </div>
 </template>
 
 <script>
+import Modal from "./Modal.vue";
+import Form from "./EditForm.vue";
+
 export default {
-  props: ['task'],
+  props: ["task"],
+  components: { Modal, Form },
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   methods: {
     markCompleted() {
-      console.log("Mark Completed: "+this.task.title)
+      console.log("Mark Completed: " + this.task.title);
     },
     deleteTask() {
-      console.log("Delete Task: "+this.task.title)
+      console.log("Delete Task: " + this.task.title);
     },
     editTask() {
-      console.log("Edit Task: "+this.task.title)
+      this.showModal = !this.showModal;
+    },
+    toggleModal() {
+      this.showModal = !this.showModal;
     },
   },
 };
