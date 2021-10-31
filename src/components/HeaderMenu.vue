@@ -1,13 +1,18 @@
 <template>
-  <div class="menu-item" @click="toggleModal">
+  <div>
     <svg
+      class="menu-item"
+      @click="toggleModal"
       width="50"
       height="50"
       viewBox="0 0 13.229166 13.229167"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g inkscape:label="Layer 1" inkscape:groupmode="layer">
+      <g
+        inkscape:label="Layer 1"
+        inkscape:groupmode="layer"
+      >
         <g transform="translate(-200.72096,-7.9337537)">
           <circle
             style="

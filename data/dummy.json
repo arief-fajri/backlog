@@ -1,0 +1,27 @@
+{
+    "tasks": [{
+            "id": 1,
+            "title": "Create Web Design",
+            "note": "It must be match with brand guidline",
+            "dateFinish": ""
+        },
+        {
+            "id": 2,
+            "title": "Create new homepage banner",
+            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
+            "dateFinish": ""
+        },
+        {
+            "id": 3,
+            "title": "Make marketing email",
+            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
+            "dateFinish": ""
+        },
+        {
+            "id": 4,
+            "title": "Update the Promo Links",
+            "note": "Make sure all the promo links and coupon codes are up to date!!!!!",
+            "dateFinish": "09-Oktober-2021"
+        }
+    ]
+}

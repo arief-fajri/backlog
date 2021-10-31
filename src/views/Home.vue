@@ -1,63 +1,54 @@
 <template>
   <div class="home">
-    <ul class="filter">
-      <li>
-        <a
-          href="#progress"
-          @click.prevent="setActive('progress')"
-          :class="{ active: isActive('progress') }"
-          >In Progress</a
-        >
-      </li>
-      <li>
-        <a
-          href="#completed"
-          @click.prevent="setActive('completed')"
-          :class="{ active: isActive('completed') }"
-          >Completed</a
-        >
-      </li>
-    </ul>
-    <div class="tabs">
-      <div
-        class="tab"
-        id="progress"
-        :class="{ tab_active: isActive('progress') }"
-      >
-        <div class="card-grid">
-          <Card />
+    <div class="tabs" v-if="taskItems.length">
+      <div class="card-grid">
+        <div v-for="task in taskItems" :key="task.id">
+        <TaskCard :task="task" />
         </div>
       </div>
-
-      <div
-        class="tab"
-        id="completed"
-        :class="{ tab_active: isActive('completed') }"
-      >
-        TESSS
-      </div>
+    </div>
+    <div class="no-task" v-else>
+      <h1>Whoooaaaa . . . . <br/> You don't have any task yet</h1>
     </div>
   </div>
 </template>
 
 <script>
-import Card from "../components/TaskCard.vue";
+import TaskCard from "../components/TaskCard.vue";
+
 export default {
   name: "Home",
-  components: { Card },
+  components: { TaskCard },
   data() {
     return {
-      activeTab: "progress",
-    };
-  },
-  methods: {
-    isActive(menuTab) {
-      return this.activeTab === menuTab;
-    },
-    setActive(menuTab) {
-      this.activeTab = menuTab;
-    },
-  },
+      taskItems: [
+        {
+            "id": 1,
+            "title": "Create Web Design",
+            "note": "It must be match with brand guidline",
+            "dateFinish": ""
+        },
+        {
+            "id": 2,
+            "title": "Create new homepage banner",
+            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumd",
+            "dateFinish": ""
+        },
+        {
+            "id": 3,
+            "title": "Make marketing email",
+            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
+            "dateFinish": ""
+        },
+        {
+            "id": 4,
+            "title": "Update the Promo Links",
+            "note": "Make sure all the promo links and coupon codes are up to date!!!!!",
+            "dateFinish": "09-Oktober-2021"
+        }
+      ]
+    }
+  }
 };
 </script>
 
@@ -67,43 +58,9 @@ export default {
   margin-top: 40px;
 }
 
-.filter {
-  text-align: center;
-}
-
-.filter li {
-  display: inline-block;
-}
-.filter li a {
-padding: 5px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 16px;
-  border: 3px solid #917c6f;
-  color: #917c6f;
-  text-decoration: none;
-}
-
-.filter li:not(:last-child) {
-  margin-right: 10px;
-}
-
-.filter li a.active {
-  background: #917c6f;
-  color: white;
-}
-
 .tabs {
   width: 90%;
   margin: 30px auto 40px;
-}
-
-.tab {
-  display: none;
-}
-
-.tab_active {
-  display: block;
 }
 
 .card-grid {
@@ -111,5 +68,14 @@ padding: 5px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
+}
+
+.no-task {
+  width: 100%;
+  height: calc(100vh - 300px);
+  color: lightslategray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
