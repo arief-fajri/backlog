@@ -62,26 +62,31 @@
       </div>
     </div>
     <div class="card-item">
-      <h3>Lorem ipsum, dolor sit amet consecteturww (max 50)</h3>
-      <p class="note">Note:(max 150)</p>
+      <h3>{{ title }}</h3>
+      <p class="note">Note:</p>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos,
-        nisi modi nulla obcaecati, maxime iste, architecto quibusdam quaerat sed
-        harum
+        {{note}}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      title: 'INI JUDUL TASK',
+      note: 'ini catatan kita'
+    }
+  }
+};
 </script>
 
 <style>
 .card {
   background: #eef4d7;
   border-radius: 20px;
-  border: 3px solid #917c6f;
+  border: 3px solid #abc837;
   position: relative;
   margin-bottom: 30px;
 }
@@ -105,17 +110,17 @@ export default {};
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  border: 3px solid #917c6f;
+  border: 3px solid #abc837;
   background: #eef4d7;
   cursor: pointer;
 }
 
 .card-btn .default-btn .svg {
-  fill: #917c6f;
+  fill: #abc837;
 }
 .card-btn .default-btn:hover,
 .card-btn .default-btn:active {
-  background: #917c6f;
+  background: #abc837;
 }
 
 .card-btn .default-btn:hover .svg,
@@ -127,9 +132,9 @@ export default {};
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background: #917c6f;
+  background: #abc837;
   margin: 0 5px;
-  border: 3px solid #917c6f;
+  border: 3px solid #abc837;
   cursor: pointer;
 }
 
@@ -144,7 +149,7 @@ export default {};
 
 .card-btn .main-btn:hover .svg,
 .card-btn .main-btn:active .svg {
-  fill: #917c6f;
+  fill: #abc837;
 }
 
 .card-item {

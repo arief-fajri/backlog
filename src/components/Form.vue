@@ -1,19 +1,21 @@
 <template>
-  <label for="">Task:</label>
-  <input type="text" placeholder="Some task..." v-model="task" />
-  <div class="count">
-    <small>{{ taskLeft }}</small>
-  </div>
-  <label for="">Note:</label>
-  <textarea placeholder="Some text notes..." v-model="note"></textarea>
-  <div class="count">
-    <small>{{ noteLeft }}</small>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <label>Task:</label>
+    <input type="text" placeholder="Some task..." v-model="task" />
+    <div class="count">
+      <small>{{ taskLeft }}</small>
+    </div>
+    <label>Note:</label>
+    <textarea placeholder="Some text notes..." v-model="note"></textarea>
+    <div class="count">
+      <small>{{ noteLeft }}</small>
+    </div>
 
-  <div class="actions">
-    <button @click="closeModal">Cancel</button>
-    <button class="main" @click="handleSubmit">Save</button>
-  </div>
+    <div class="actions">
+      <button type="button" @click="closeModal">Cancel</button>
+      <button type="submit" class="main">Save</button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -29,7 +31,8 @@ export default {
       this.$emit("close");
     },
     handleSubmit() {
-      console.log("cek");
+      this.task = "";
+      this.note = "";
     },
   },
   computed: {
