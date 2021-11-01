@@ -21,7 +21,12 @@
             "id": 4,
             "title": "Update the Promo Links",
             "note": "Make sure all the promo links and coupon codes are up to date!!!!!",
-            "dateFinish": "09-Oktober-2021"
+            "dateFinish": {
+                "date": "09",
+                "day": "Wednesday",
+                "month": "September 2021",
+                "hour": "10:33"
+            }
         }
     ]
 }

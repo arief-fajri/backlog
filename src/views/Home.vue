@@ -24,7 +24,37 @@ export default {
   components: { TaskCard },
   data() {
     return {
-      taskItems: [],
+      taskItems: [
+        {
+          id: 1,
+          title: "Create Web Design",
+          note: "It must be match with brand guidline",
+          dateFinish: "",
+        },
+        {
+          id: 2,
+          title: "Create new homepage banner",
+          note: "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
+          dateFinish: "",
+        },
+        {
+          id: 3,
+          title: "Make marketing email",
+          note: "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
+          dateFinish: "",
+        },
+        {
+          id: 4,
+          title: "Update the Promo Links",
+          note: "Make sure all the promo links and coupon codes are up to date!!!!!",
+          dateFinish: {
+            date: "09",
+            day: "Wednesday",
+            month: "September 2021",
+            hour: "10:33",
+          },
+        },
+      ],
     };
   },
   computed: {
@@ -32,6 +62,12 @@ export default {
       return this.taskItems.filter((task) => !task.dateFinish);
     },
   },
+  // mounted() {
+  //   fetch("http://localhost:3000/tasks")
+  //     .then((res) => res.json())
+  //     .then((data) => (this.taskItems = data))
+  //     .catch((err) => console.log(err));
+  // },
 };
 </script>
 
