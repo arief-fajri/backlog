@@ -4,6 +4,7 @@
       <div
         class="default-btn flex-btn"
         @click="deleteTask"
+        title="Delete This Task"
       >
         <svg
           height="25"
@@ -25,6 +26,7 @@
       <div
         class="main-btn flex-btn"
         @click="markCompleted"
+        title="Mark as Complete"
       >
         <svg
           height="40"
@@ -42,6 +44,7 @@
       <div
         class="default-btn flex-btn"
         @click="editTask"
+        title="Edit This Task"
       >
         <svg
           height="23"
@@ -106,11 +109,11 @@ export default {
 .card {
   background: #eef4d7;
   border-radius: 20px;
-  border: 3px solid #abc837;
+  border: 4px solid #abc837;
   position: relative;
   margin-bottom: 30px;
   height: 200px;
-  padding: 20px;
+  padding: 13px 20px 20px;
 }
 
 .card-btn {
@@ -177,7 +180,7 @@ export default {
 .card-item {
   overflow-y: auto;
   height: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 .card-item::-webkit-scrollbar-track {
