@@ -1,47 +1,26 @@
 <template>
-  <div class="timeline">
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
-    </div>
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
-    </div>
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
-    </div>
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
-    </div>
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
-    </div>
-    <div class="item-section">
-      <div class="item-inner">
-        <span class="node"></span>
-        <Card />
-      </div>
+  <div v-if="items.length">
+    <div class="timeline">
+        <div v-for="item in items" :key="item.id" class="item-section">
+          <div class="item-inner">
+            <span class="node"></span>
+            <Card :item="item" />
+          </div>
+        </div>
     </div>
   </div>
+  <div class="no-task" v-else>
+      <h1>
+        Oooohhhhhh . . . . <br />
+        You haven't finished any task yet
+      </h1>
+    </div>
 </template>
 
 <script>
 import Card from "../../components/CompleteCard.vue";
 export default {
+  props: ["items"],
   components: { Card },
 };
 </script>
@@ -62,8 +41,8 @@ export default {
   top: 0;
   margin: 0 0 0 -1px;
   width: 5px;
-  height: 100%;
-  background: #25303b;
+  height: calc(100vh - 140px);
+  background: #581845;
   border-radius: 20px;
 }
 .timeline::after {
@@ -73,7 +52,7 @@ export default {
   left: 50%;
   width: 20px;
   height: 20px;
-  background: #25303b;
+  background: #581845;
   margin-left: -8.2px;
   transform: rotate(-45deg);
 }
@@ -109,9 +88,9 @@ export default {
   left: 50%;
   margin: 52px 0 0 -13px;
   border-radius: 100%;
-  background: #888;
-  border: 8px solid #fff;
-  box-shadow: 0 0 0 5px #25303b;
+  background: #506070;
+  border: 8px solid #ffeaf2;
+  box-shadow: 0 0 0 5px #581845;
 }
 .node:hover {
   border: 8px solid #5555ff;

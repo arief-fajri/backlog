@@ -1,14 +1,17 @@
 <template>
   <div class="home">
-    <div class="tabs" v-if="taskItems.length">
+    <div class="tabs" v-if="filteredTask.length">
       <div class="card-grid">
-        <div v-for="task in taskItems" :key="task.id">
-        <TaskCard :task="task" />
+        <div v-for="task in filteredTask" :key="task.id">
+          <TaskCard :task="task" />
         </div>
       </div>
     </div>
     <div class="no-task" v-else>
-      <h1>Whoooaaaa . . . . <br/> You don't have any task yet</h1>
+      <h1>
+        Whoooaaaa . . . . <br />
+        You don't have any task yet
+      </h1>
     </div>
   </div>
 </template>
@@ -21,34 +24,14 @@ export default {
   components: { TaskCard },
   data() {
     return {
-      taskItems: [
-        {
-            "id": 1,
-            "title": "Create Web Design ",
-            "note": "It must be match with brand guidline",
-            "dateFinish": ""
-        },
-        {
-            "id": 2,
-            "title": "Create new homepage banner Create new homepagipsum",
-            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumd",
-            "dateFinish": ""
-        },
-        {
-            "id": 3,
-            "title": "Make marketing email",
-            "note": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
-            "dateFinish": ""
-        },
-        {
-            "id": 4,
-            "title": "Update the Promo Links",
-            "note": "Make sure all the promo links and coupon codes are up to date!!!!!",
-            "dateFinish": "09-Oktober-2021"
-        }
-      ]
-    }
-  }
+      taskItems: [],
+    };
+  },
+  computed: {
+    filteredTask() {
+      return this.taskItems.filter((task) => !task.dateFinish);
+    },
+  },
 };
 </script>
 
@@ -77,5 +60,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
 }
 </style>

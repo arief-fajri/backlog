@@ -1,16 +1,26 @@
 <template>
   <div class="histogram">
-    <TimeLine />
+    <TimeLine :items="filteredItem" />
   </div>
 </template>
 
 <script>
-import Card from '../components/CompleteCard.vue'
-import TimeLine from './histogram/TimeLine.vue'
+import Card from "../components/CompleteCard.vue";
+import TimeLine from "./histogram/TimeLine.vue";
 
 export default {
-  components: { Card, TimeLine }
-}
+  components: { Card, TimeLine },
+  data() {
+    return {
+      taskItems: [],
+    };
+  },
+  computed: {
+    filteredItem() {
+      return this.taskItems.filter(task => task.dateFinish)
+    },
+  },
+};
 </script>
 
 <style>

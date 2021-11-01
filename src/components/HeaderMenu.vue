@@ -85,16 +85,16 @@ export default {
   text-decoration: none;
   margin-right: 15px;
   padding: 5px 15px;
-  border: 3px solid black;
+  border: 3px solid #900c3f;
   border-radius: 15px;
-  color: black;
+  color: #900c3f;
   font-weight: bold;
-  background: whitesmoke;
+  background: #ffeaf2;
 }
 
 .menu a.router-link-exact-active{
-  background: black;
-  color: white;
+  background: #900c3f;
+  color: #ffeaf2;
 }
 
 .menu-item {

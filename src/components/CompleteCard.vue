@@ -1,21 +1,23 @@
 <template>
   <div class="complete-card">
     <div class="complete-time">
-      <div class="complete-date">16</div>
+      <div class="complete-date">{{item.dateFinish.date}}</div>
       <div class="complete-day">
-        <div class="complete-weekday">Wednesday</div>
-        <div class="complete-month">September 2024</div>
+        <div class="complete-weekday">{{item.dateFinish.day}}</div>
+        <div class="complete-month">{{item.dateFinish.month}}</div>
       </div>
-      <div class="complete-hour">10:32</div>
+      <div class="complete-hour">{{item.dateFinish.hour}}</div>
     </div>
     <div class="complete-item">
-      <h2>Finished Task Jobs</h2>
+      <h2>{{item.title}}</h2>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["item"]
+};
 </script>
 
 <style>

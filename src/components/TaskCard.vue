@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-btn">
+    <div class="card-btn" draggable="false">
       <div
         class="default-btn flex-btn"
         @click="deleteTask"
@@ -60,6 +60,11 @@
         </svg>
       </div>
     </div>
+    <div class="card-drag">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
     <div class="card-item">
       <h2>{{ task.title }}</h2>
       <p class="note">Note:</p>
@@ -71,7 +76,10 @@
 
   <div v-if="showModal">
     <Modal @close="toggleModal">
-      <Form @close="toggleModal" :taskItem="task"/>
+      <Form
+        @close="toggleModal"
+        :taskItem="task"
+      />
     </Modal>
   </div>
 </template>
@@ -126,7 +134,28 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+.card-drag {
+  width: 100px;
+  height: 16px;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #abc837;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: whitesmoke;
+}
+.dot:not(:last-child){
+  margin-right: 5px;
+}
 .flex-btn {
   display: flex;
   justify-content: center;
@@ -185,8 +214,8 @@ export default {
 }
 
 .card-item::-webkit-scrollbar-track {
-    border-radius: 12px;
-    background: #abc837;
+  border-radius: 12px;
+  background: #abc837;
 }
 
 .card h2 {
