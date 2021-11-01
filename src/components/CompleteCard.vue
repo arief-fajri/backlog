@@ -31,7 +31,7 @@ export default {};
   padding: 10px 10px 5px;
   display: flex;
   align-items: center;
-  color: #fdfffd;
+  color: #fff;
   position: relative;
 }
 .complete-time::after {
@@ -50,7 +50,7 @@ export default {};
 }
 .complete-day {
   padding-right: 10px;
-  border-right: 3px solid #dfe4e9;
+  border-right: 3px solid #fff;
 }
 .complete-weekday {
   font-weight: bold;
@@ -61,7 +61,7 @@ export default {};
 .complete-hour {
   padding-left: 5px;
   font-size: 32px;
-  color: #dfe4e9;
+  color: #fff;
 }
 .complete-item {
   padding: 20px;

@@ -121,6 +121,7 @@ export default {
   height: 60px;
   position: absolute;
   bottom: -30px;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,7 +204,7 @@ export default {
   line-height: 1;
   border-bottom: 2px solid black;
   display: inline-block;
-  padding: 0 15px 0 5px;
+  padding: 0 15px 0 3px;
   margin-bottom: 5px;
 }
 </style>

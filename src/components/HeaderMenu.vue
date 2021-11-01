@@ -89,6 +89,7 @@ export default {
   border-radius: 15px;
   color: black;
   font-weight: bold;
+  background: whitesmoke;
 }
 
 .menu a.router-link-exact-active{
