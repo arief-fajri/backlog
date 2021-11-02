@@ -1,6 +1,6 @@
 <template>
-  <div v-if="items.length">
-    <div class="timeline">
+  
+    <div v-if="items.length" class="timeline">
         <div v-for="item in items" :key="item.id" class="item-section">
           <div class="item-inner">
             <span class="node"></span>
@@ -8,7 +8,6 @@
           </div>
         </div>
     </div>
-  </div>
   <div class="no-task" v-else>
       <h1>
         Oooohhhhhh . . . . <br />
@@ -30,8 +29,7 @@ export default {
   width: 80%;
   margin: 0 auto;
   position: relative;
-  top: 100px;
-  padding-bottom: 10px;
+  padding: 50px 0;
 }
 .timeline::before {
   content: "";
@@ -60,9 +58,8 @@ export default {
 .item-section {
   width: 100%;
   max-width: 920px;
-  margin: -100px auto 20px;
+  margin: 0 auto 10px;
   position: relative;
-  padding-top: 20px;
 }
 .item-section::after {
   content: "";
@@ -71,14 +68,14 @@ export default {
 }
 .item-inner {
   float: left;
-  margin: 5px 0 0 20px;
   width: 45%;
 }
 .item-section:nth-child(2n + 2) .item-inner {
   float: right;
+  padding-left: 20px;
 }
 .item-section:nth-child(2n + 2) .complete-time::after {
-  left: -13px;
+  left: -14px;
 }
 .node {
   display: block;
@@ -86,8 +83,8 @@ export default {
   height: 30px;
   position: absolute;
   top: 0;
-  left: 50%;
-  margin: 52px 0 0 -13px;
+  left: calc(50% - 13px);
+  margin: 28px 0 0 0;
   border-radius: 100%;
   background: #506070;
   border: 8px solid #ffeaf2;
@@ -104,5 +101,8 @@ export default {
 .node:hover ~ .complete-card .complete-time,
 .node:hover ~ .complete-card .complete-time::after {
   background: #5555ff;
+}
+.node:hover ~ .complete-card .complete-card-btn div {
+  border: 3px solid #5555ff;
 }
 </style>

@@ -112,7 +112,7 @@ export default {
             date:("0" + d.getDate()).slice(-2),
             day: days[d.getDay()],
             month: months[d.getMonth()]+" "+d.getFullYear(),
-            hour: d.getHours()+":"+d.getMinutes()
+            hour: ("0" + d.getHours()).slice(-2)+":"+("0" + d.getMinutes()).slice(-2)
           },
         };
       store.commit("updateTask", obj);
@@ -125,7 +125,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   background: #eef4d7;
   border-radius: 20px;
