@@ -105,4 +105,7 @@ export default {
 .node:hover ~ .complete-card .complete-card-btn div {
   border: 3px solid #5555ff;
 }
+.node:hover ~ .complete-card .complete-card-btn div .svg {
+  fill: #5555ff;
+}
 </style>

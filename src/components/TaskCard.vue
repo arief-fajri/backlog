@@ -129,7 +129,7 @@ export default {
 .card {
   background: #eef4d7;
   border-radius: 20px;
-  border: 4px solid #abc837;
+  border: 4px solid #5a2ca0;
   position: relative;
   margin-bottom: 30px;
   height: 200px;
@@ -153,7 +153,7 @@ export default {
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background: #abc837;
+  background: #5a2ca0;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -177,17 +177,17 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  border: 3px solid #abc837;
+  border: 3px solid #5a2ca0;
   background: #eef4d7;
   cursor: pointer;
 }
 
 .card-btn .default-btn .svg {
-  fill: #abc837;
+  fill: #5a2ca0;
 }
 .card-btn .default-btn:hover,
 .card-btn .default-btn:active {
-  background: #abc837;
+  background: #5a2ca0;
 }
 
 .card-btn .default-btn:hover .svg,
@@ -199,9 +199,9 @@ export default {
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background: #abc837;
+  background: #5a2ca0;
   margin: 0 5px;
-  border: 3px solid #abc837;
+  border: 3px solid #5a2ca0;
   cursor: pointer;
 }
 
@@ -216,7 +216,7 @@ export default {
 
 .card-btn .main-btn:hover .svg,
 .card-btn .main-btn:active .svg {
-  fill: #abc837;
+  fill: #5a2ca0;
 }
 
 .card-item {
@@ -227,7 +227,14 @@ export default {
 
 .card-item::-webkit-scrollbar-track {
   border-radius: 12px;
-  background: #abc837;
+  background: #5a2ca0;
+}
+.card-item::-webkit-scrollbar-thumb {
+    background: #00a383;
+    border-radius: 10px;
+}
+.card-item::-webkit-scrollbar-thumb:hover {
+    background: #abc837;
 }
 
 .card h2 {
