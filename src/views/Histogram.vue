@@ -7,22 +7,20 @@
 <script>
 import Card from "../components/CompleteCard.vue";
 import TimeLine from "./histogram/TimeLine.vue";
+import {useStore} from "vuex";
+import {computed} from 'vue';
 
 export default {
   components: { Card, TimeLine },
-  data() {
-    return {
-      taskItems: [],
-    };
-  },
-  computed: {
-    filteredItem() {
-      return this.taskItems.filter((task) => task.dateFinish);
-    },
-  },
-  mounted () {
-   this.taskItems = this.$store.getters.complete;
-},
+  setup() {
+    const store = useStore();
+
+    let taskItems = computed(function(){
+      return store.getters.complete
+    });
+
+    return {taskItems}
+  }
 };
 </script>
 
