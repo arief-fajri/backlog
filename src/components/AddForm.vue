@@ -5,19 +5,20 @@
       type="text"
       placeholder="Some task..."
       v-model="task"
-      :class="{warning: task.length > 50}"
+      :class="{warning: task.length > 150}"
     />
     <div class="count">
-      <p v-if="validate">Task must be filled !</p>
+      <p v-if="validTask">Task must be filled max 50 character!</p>
       <small>{{ taskLeft }}</small>
     </div>
     <label>Note:</label>
     <textarea
       placeholder="Some text notes..."
       v-model="note"
-      :class="{warning: note.length > 50}"
+      :class="{warning: note.length > 150}"
     ></textarea>
     <div class="count">
+      <p v-if="validNote">Note filled max 150 character!</p>
       <small>{{ noteLeft }}</small>
     </div>
 
@@ -45,7 +46,8 @@ export default {
     const router = useRouter();
     const task = ref("");
     const note = ref("");
-    const validate = ref(false);
+    const validTask = ref(false);
+    const validNote = ref(false);
 
     function closeModal() {
       context.emit("update:isOpen", false);
@@ -56,15 +58,18 @@ export default {
         limit = 50;
       return char + " / " + limit;
     });
+
     let noteLeft = computed(function () {
       let char = note.value.length,
-        limit = 50;
+        limit = 150;
       return char + " / " + limit;
     });
 
     function handleSubmit() {
-      if (task.value.length) {
-        validate.value = false;
+      validTask.value = false;
+      validNote.value = false;
+      
+      if (task.value.length && task.value.length<51 && note.value.length<151) {
         let obj = {
           id: Math.floor(Math.random() * 10000),
           title: task.value,
@@ -75,14 +80,16 @@ export default {
         closeModal();
         router.push("/");
       } else {
-        validate.value = true;
+        if(task.value.length>50 || !task.value.length) validTask.value = true;
+        if(note.value.length>150) validNote.value = true;
       }
     }
 
     return {
       task,
       note,
-      validate,
+      validTask,
+      validNote,
       closeModal,
       taskLeft,
       noteLeft,

@@ -67,11 +67,6 @@ export default {
   components: { Modal, Form },
   setup() {
     const showModal = ref(false);
-
-    function toggleModal() {
-      showModal = !showModal;
-      console.log(showModal);
-    }
     return { showModal };
   },
 };
