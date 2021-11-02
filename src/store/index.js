@@ -47,7 +47,7 @@ export default createStore({
         addTask(state, item) {
             state.taskItems.unshift(item);
         },
-        editTask(state, item) {
+        updateTask(state, item) {
             state.taskItems = state.taskItems.map(task => {
                 if (task.id == item.id) {
                     return item;

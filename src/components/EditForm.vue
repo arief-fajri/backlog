@@ -6,9 +6,9 @@
       placeholder="Some task..."
       v-model="task"
       :class="{warning: task.length > 50}"
-      required
     />
     <div class="count">
+      <p v-if="validTask">Task must be filled and max 50 character!</p>
       <small>{{ taskLeft }}</small>
     </div>
     <label>Note:</label>
@@ -18,6 +18,7 @@
       :class="{warning: note.length > 150}"
     ></textarea>
     <div class="count">
+      <p v-if="validNote">Note filled max 150 character!</p>
       <small>{{ noteLeft }}</small>
     </div>
 
@@ -35,35 +36,93 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 export default {
-  props: ["taskItem"],
-  data() {
-    return {
-      task: this.taskItem.title,
-      note: this.taskItem.note,
-      isNoteLimit: false,
-    };
-  },
-  methods: {
-    closeModal() {
-      this.$emit("close");
-    },
-    handleSubmit() {
-      this.$emit("close");
-    },
-  },
-  computed: {
-    taskLeft() {
-      var char = this.task.length,
+  props: ["isOpen", "taskItem"],
+  setup(props, context){
+    const store = useStore()
+    const router = useRouter()
+    const task = ref(props.taskItem.title);
+    const note = ref(props.taskItem.note);
+    const validTask = ref(false);
+    const validNote = ref(false);
+
+    function closeModal() {
+      context.emit("update:isOpen", false);
+    }
+
+    let taskLeft = computed(function () {
+      let char = task.value.length,
         limit = 50;
       return char + " / " + limit;
-    },
-    noteLeft() {
-      var char = this.note.length,
+    });
+
+    let noteLeft = computed(function () {
+      let char = note.value.length,
         limit = 150;
       return char + " / " + limit;
-    },
-  },
+    });
+
+    function handleSubmit() {
+      validTask.value = false;
+      validNote.value = false;
+
+      if (task.value.length && task.value.length<51 && note.value.length<151) {
+        let obj = {
+          id: props.taskItem.id,
+          title: task.value,
+          note: note.value,
+          dateFinish: "",
+        };
+        store.commit("updateTask", obj);
+        closeModal();
+        router.push("/");
+      } else {
+        if(task.value.length>50 || !task.value.length) validTask.value = true;
+        if(note.value.length>150) validNote.value = true;
+      }
+    }
+
+    return {
+      task,
+      note,
+      validTask,
+      validNote,
+      closeModal,
+      taskLeft,
+      noteLeft,
+      handleSubmit,
+    }
+  }
+  // data() {
+  //   return {
+  //     task: this.taskItem.title,
+  //     note: this.taskItem.note,
+  //     isNoteLimit: false,
+  //   };
+  // },
+  // methods: {
+  //   closeModal() {
+  //     this.$emit("close");
+  //   },
+  //   handleSubmit() {
+  //     this.$emit("close");
+  //   },
+  // },
+  // computed: {
+  //   taskLeft() {
+  //     var char = this.task.length,
+  //       limit = 50;
+  //     return char + " / " + limit;
+  //   },
+  //   noteLeft() {
+  //     var char = this.note.length,
+  //       limit = 150;
+  //     return char + " / " + limit;
+  //   },
+  // },
 };
 </script>
 
@@ -81,6 +140,11 @@ input {
   margin-bottom: 10px;
   text-align: right;
   padding: 0 10px;
+}
+.count p {
+  float: left;
+  color: brown;
+  font-weight: bold;
 }
 
 label {
