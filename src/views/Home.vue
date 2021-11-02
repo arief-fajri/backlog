@@ -1,13 +1,21 @@
 <template>
   <div class="home">
-    <div class="tabs" v-if="filteredTask.length">
+    <div
+      class="tabs"
+      v-if="taskItems.length"
+    >
       <div class="card-grid">
-        <div v-for="task in filteredTask" :key="task.id">
-          <TaskCard :task="task" />
-        </div>
+        <TaskCard
+          :task="task"
+          v-for="task in taskItems"
+          :key="task.id"
+        />
       </div>
     </div>
-    <div class="no-task" v-else>
+    <div
+      class="no-task"
+      v-else
+    >
       <h1>
         Whoooaaaa . . . . <br />
         You don't have any task yet
@@ -18,56 +26,20 @@
 
 <script>
 import TaskCard from "../components/TaskCard.vue";
+import {useStore} from "vuex";
+import {computed} from 'vue';
 
 export default {
   name: "Home",
   components: { TaskCard },
-  data() {
-    return {
-      taskItems: [
-        {
-          id: 1,
-          title: "Create Web Design",
-          note: "It must be match with brand guidline",
-          dateFinish: "",
-        },
-        {
-          id: 2,
-          title: "Create new homepage banner",
-          note: "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
-          dateFinish: "",
-        },
-        {
-          id: 3,
-          title: "Make marketing email",
-          note: "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ",
-          dateFinish: "",
-        },
-        {
-          id: 4,
-          title: "Update the Promo Links",
-          note: "Make sure all the promo links and coupon codes are up to date!!!!!",
-          dateFinish: {
-            date: "09",
-            day: "Wednesday",
-            month: "September 2021",
-            hour: "10:33",
-          },
-        },
-      ],
-    };
-  },
-  computed: {
-    filteredTask() {
-      return this.taskItems.filter((task) => !task.dateFinish);
-    },
-  },
-  // mounted() {
-  //   fetch("http://localhost:3000/tasks")
-  //     .then((res) => res.json())
-  //     .then((data) => (this.taskItems = data))
-  //     .catch((err) => console.log(err));
-  // },
+  setup() {
+    const store = useStore();
+
+    let taskItems = computed(function(){
+      return store.getters.ongoing
+    });
+    return {taskItems}
+  }
 };
 </script>
 

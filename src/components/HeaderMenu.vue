@@ -10,7 +10,7 @@
     >Histogram</router-link>
     <div
       class="menu-item"
-      @click="toggleModal"
+      @click="showModal=true"
       title="Add More Task"
       style="background: transparent; border: none"
     >
@@ -47,30 +47,32 @@
       </svg>
     </div>
   </div>
-  <div v-if="showModal">
-    <Modal @close="toggleModal">
-      <template v-slot>
-        <Form @close="toggleModal" />
-      </template>
-    </Modal>
-  </div>
+
+  <Modal
+    @close="showModal=false"
+    v-if="showModal"
+  >
+    <template v-slot>
+      <Form v-model:isOpen="showModal" />
+    </template>
+  </Modal>
 </template>
 
 <script>
 import Modal from "./Modal.vue";
 import Form from "./AddForm.vue";
+import { ref } from "vue";
 
 export default {
   components: { Modal, Form },
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  methods: {
-    toggleModal() {
-      this.showModal = !this.showModal;
-    },
+  setup() {
+    const showModal = ref(false);
+
+    function toggleModal() {
+      showModal = !showModal;
+      console.log(showModal);
+    }
+    return { showModal };
   },
 };
 </script>
@@ -92,7 +94,7 @@ export default {
   background: #ffeaf2;
 }
 
-.menu a.router-link-exact-active{
+.menu a.router-link-exact-active {
   background: #900c3f;
   color: #ffeaf2;
 }

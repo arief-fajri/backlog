@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-btn" draggable="false">
+    <div class="card-btn">
       <div
         class="default-btn flex-btn"
         @click="deleteTask"
@@ -74,42 +74,42 @@
     </div>
   </div>
 
-  <div v-if="showModal">
+  <!--div v-if="showModal">
     <Modal @close="toggleModal">
       <Form
         @close="toggleModal"
         :taskItem="task"
       />
     </Modal>
-  </div>
+  </div-->
 </template>
 
 <script>
-import Modal from "./Modal.vue";
-import Form from "./EditForm.vue";
+//import Modal from "./Modal.vue";
+//import Form from "./EditForm.vue";
 
 export default {
   props: ["task"],
-  components: { Modal, Form },
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  methods: {
-    markCompleted() {
-      console.log("Mark Completed: " + this.task.title);
-    },
-    deleteTask() {
-      console.log("Delete Task: " + this.task.title);
-    },
-    editTask() {
-      this.showModal = !this.showModal;
-    },
-    toggleModal() {
-      this.showModal = !this.showModal;
-    },
-  },
+  //components: { Modal, Form },
+  // data() {
+  //   return {
+  //     showModal: false,
+  //   };
+  // },
+  // methods: {
+  //   markCompleted() {
+  //     console.log("Mark Completed: " + this.task.title);
+  //   },
+  //   deleteTask() {
+  //     console.log("Delete Task: " + this.task.title);
+  //   },
+  //   editTask() {
+  //     this.showModal = !this.showModal;
+  //   },
+  //   toggleModal() {
+  //     this.showModal = !this.showModal;
+  //   },
+  // },
 };
 </script>
 

@@ -6,9 +6,9 @@
       placeholder="Some task..."
       v-model="task"
       :class="{warning: task.length > 50}"
-      required
     />
     <div class="count">
+      <p v-if="validate">Task must be filled !</p>
       <small>{{ taskLeft }}</small>
     </div>
     <label>Note:</label>
@@ -35,33 +35,59 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
-  data() {
-    return {
-      task: "",
-      note: "",
-    };
-  },
-  methods: {
-    closeModal() {
-      this.$emit("close");
-    },
-    handleSubmit() {
-      this.task = "";
-      this.note = "";
-    },
-  },
-  computed: {
-    taskLeft() {
-      var char = this.task.length,
+  props: ["isOpen"],
+  setup(props, context) {
+    const store = useStore();
+    const router = useRouter();
+    const task = ref("");
+    const note = ref("");
+    const validate = ref(false);
+
+    function closeModal() {
+      context.emit("update:isOpen", false);
+    }
+
+    let taskLeft = computed(function () {
+      let char = task.value.length,
         limit = 50;
       return char + " / " + limit;
-    },
-    noteLeft() {
-      var char = this.note.length,
-        limit = 150;
+    });
+    let noteLeft = computed(function () {
+      let char = note.value.length,
+        limit = 50;
       return char + " / " + limit;
-    },
+    });
+
+    function handleSubmit() {
+      if (task.value.length) {
+        validate.value = false;
+        let obj = {
+          id: Math.floor(Math.random() * 10000),
+          title: task.value,
+          note: note.value,
+          dateFinish: "",
+        };
+        store.commit("addTask", obj);
+        closeModal();
+        router.push("/");
+      } else {
+        validate.value = true;
+      }
+    }
+
+    return {
+      task,
+      note,
+      validate,
+      closeModal,
+      taskLeft,
+      noteLeft,
+      handleSubmit,
+    };
   },
 };
 </script>
@@ -77,9 +103,15 @@ input {
 }
 
 .count {
+  margin-top: 5px;
   margin-bottom: 10px;
   text-align: right;
   padding: 0 10px;
+}
+.count p {
+  float: left;
+  color: brown;
+  font-weight: bold;
 }
 
 label {
@@ -98,8 +130,8 @@ textarea {
 }
 
 .warning {
-    background-color: #ffd5d5;
-    border: 2px solid #aa0000;
+  background-color: #ffd5d5;
+  border: 2px solid #aa0000;
 }
 
 .modal .actions {
