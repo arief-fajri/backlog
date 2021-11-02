@@ -43,7 +43,7 @@
       </div>
       <div
         class="default-btn flex-btn"
-        @click="editTask"
+        @click="showModal = true"
         title="Edit This Task"
       >
         <svg
@@ -74,40 +74,45 @@
     </div>
   </div>
 
-  <!--div v-if="showModal">
-    <Modal @close="toggleModal">
+  <Modal
+    @close="showModal=false"
+    v-if="showModal"
+  >
+    <template v-slot>
       <Form
-        @close="toggleModal"
+        v-model:isOpen="showModal"
         :taskItem="task"
       />
-    </Modal>
-  </div-->
+    </template>
+  </Modal>
 </template>
 
 <script>
-//import Modal from "./Modal.vue";
-//import Form from "./EditForm.vue";
-
+import Modal from "./Modal.vue";
+import Form from "./EditForm.vue";
+import { ref } from "@vue/reactivity";
+import { useStore } from 'vuex';
 export default {
   props: ["task"],
-  //components: { Modal, Form },
-  // data() {
-  //   return {
-  //     showModal: false,
-  //   };
-  // },
+  components: { Modal, Form },
+  setup(props) {
+    const showModal = ref(false);
+    const store = useStore();
+
+    function markCompleted() {
+      console.log("cek complete"+ props.task.id);
+    }
+    function deleteTask() {
+      store.commit("removeTask", props.task);
+    }
+    return { showModal, markCompleted, deleteTask };
+  },
   // methods: {
   //   markCompleted() {
   //     console.log("Mark Completed: " + this.task.title);
   //   },
   //   deleteTask() {
   //     console.log("Delete Task: " + this.task.title);
-  //   },
-  //   editTask() {
-  //     this.showModal = !this.showModal;
-  //   },
-  //   toggleModal() {
-  //     this.showModal = !this.showModal;
   //   },
   // },
 };
@@ -153,7 +158,7 @@ export default {
   border-radius: 100%;
   background: whitesmoke;
 }
-.dot:not(:last-child){
+.dot:not(:last-child) {
   margin-right: 5px;
 }
 .flex-btn {

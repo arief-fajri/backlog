@@ -38,12 +38,10 @@
 <script>
 import { computed, ref } from "@vue/reactivity";
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
 export default {
   props: ["isOpen", "taskItem"],
   setup(props, context){
     const store = useStore()
-    const router = useRouter()
     const task = ref(props.taskItem.title);
     const note = ref(props.taskItem.note);
     const validTask = ref(false);
@@ -78,7 +76,6 @@ export default {
         };
         store.commit("updateTask", obj);
         closeModal();
-        router.push("/");
       } else {
         if(task.value.length>50 || !task.value.length) validTask.value = true;
         if(note.value.length>150) validNote.value = true;
