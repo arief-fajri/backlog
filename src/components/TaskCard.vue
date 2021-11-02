@@ -100,21 +100,28 @@ export default {
     const store = useStore();
 
     function markCompleted() {
-      console.log("cek complete"+ props.task.id);
+      const d = new Date();
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      let obj = {
+          id: props.task.id,
+          title: props.task.title,
+          note: props.task.note,
+          dateFinish: {
+            date:("0" + d.getDate()).slice(-2),
+            day: days[d.getDay()],
+            month: months[d.getMonth()]+" "+d.getFullYear(),
+            hour: d.getHours()+":"+d.getMinutes()
+          },
+        };
+      store.commit("updateTask", obj);
     }
     function deleteTask() {
       store.commit("removeTask", props.task);
     }
     return { showModal, markCompleted, deleteTask };
   },
-  // methods: {
-  //   markCompleted() {
-  //     console.log("Mark Completed: " + this.task.title);
-  //   },
-  //   deleteTask() {
-  //     console.log("Delete Task: " + this.task.title);
-  //   },
-  // },
 };
 </script>
 

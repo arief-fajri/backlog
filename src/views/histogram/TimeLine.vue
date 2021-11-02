@@ -41,7 +41,8 @@ export default {
   top: 0;
   margin: 0 0 0 -1px;
   width: 5px;
-  height: calc(100vh - 140px);
+  min-height: calc(100vh - 140px);
+  height: 100%;
   background: #581845;
   border-radius: 20px;
 }
