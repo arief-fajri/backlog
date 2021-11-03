@@ -69,20 +69,14 @@
       <h2>{{ task.title }}</h2>
       <p class="note">Note:</p>
       <p>
-        {{task.note}}
+        {{ task.note }}
       </p>
     </div>
   </div>
 
-  <Modal
-    @close="showModal=false"
-    v-if="showModal"
-  >
+  <Modal @close="showModal = false" v-if="showModal">
     <template v-slot>
-      <Form
-        v-model:isOpen="showModal"
-        :taskItem="task"
-      />
+      <Form v-model:isOpen="showModal" :taskItem="task" />
     </template>
   </Modal>
 </template>
@@ -91,7 +85,7 @@
 import Modal from "./Modal.vue";
 import Form from "./EditForm.vue";
 import { ref } from "@vue/reactivity";
-import { useStore } from 'vuex';
+import { useStore } from "vuex";
 export default {
   props: ["task"],
   components: { Modal, Form },
@@ -101,21 +95,45 @@ export default {
 
     function markCompleted() {
       const d = new Date();
-      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
 
       let obj = {
-          id: props.task.id,
-          title: props.task.title,
-          note: props.task.note,
-          dateFinish: {
-            date:("0" + d.getDate()).slice(-2),
-            day: days[d.getDay()],
-            month: months[d.getMonth()]+" "+d.getFullYear(),
-            hour: ("0" + d.getHours()).slice(-2)+":"+("0" + d.getMinutes()).slice(-2)
-          },
-        };
-      store.commit("updateTask", obj);
+        id: props.task.id,
+        title: props.task.title,
+        note: props.task.note,
+        dateFinish: {
+          date: ("0" + d.getDate()).slice(-2),
+          day: days[d.getDay()],
+          month: months[d.getMonth()] + " " + d.getFullYear(),
+          hour:
+            ("0" + d.getHours()).slice(-2) +
+            ":" +
+            ("0" + d.getMinutes()).slice(-2),
+        },
+      };
+      store.commit("addComplete", obj);
     }
     function deleteTask() {
       store.commit("removeTask", props.task);
@@ -158,6 +176,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: all-scroll;
 }
 .dot {
   width: 10px;
@@ -230,11 +249,11 @@ export default {
   background: #5a2ca0;
 }
 .card-item::-webkit-scrollbar-thumb {
-    background: #00a383;
-    border-radius: 10px;
+  background: #00a383;
+  border-radius: 10px;
 }
 .card-item::-webkit-scrollbar-thumb:hover {
-    background: #abc837;
+  background: #abc837;
 }
 
 .card h2 {

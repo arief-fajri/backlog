@@ -55,7 +55,7 @@ export default {
   setup(props){
     const store = useStore()
     function deleteItem(){
-      store.commit("removeTask", props.item);
+      store.commit("removeComplete", props.item);
     }
     function goBack(){
       let obj = {
@@ -64,7 +64,8 @@ export default {
           note: props.item.note,
           dateFinish: ""
         };
-      store.commit("updateTask", obj);
+      store.commit("addTask", obj);
+      store.commit("removeComplete", props.item);
     }
 
     return {deleteItem, goBack}

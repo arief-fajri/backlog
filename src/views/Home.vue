@@ -1,21 +1,33 @@
 <template>
   <div class="home">
-    <div
-      class="tabs"
-      v-if="taskItems.length"
-    >
-      <div class="card-grid">
-        <TaskCard
-          :task="task"
-          v-for="task in taskItems"
-          :key="task.id"
-        />
-      </div>
+    <div class="tabs" v-if="taskItems.length">
+      <!--div class="card-grid">
+        <TaskCard v-for="task in taskItems" :key="task.id" :task="task" />
+      </div-->
+      <draggable
+        class="card-grid"
+        v-model="taskItems"
+        item-key="id"
+        handle=".card-drag"
+        tag="transition-group"
+        :component-data="{
+          tag: 'div',
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null
+        }"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+      >
+        <template #item="{ element }">
+          <div class="list-group-item">
+            <TaskCard :task="element" />
+          </div>
+          
+        </template>
+      </draggable>
     </div>
-    <div
-      class="no-task"
-      v-else
-    >
+    <div class="no-task" v-else>
       <h1>
         Whoooaaaa . . . . <br />
         You don't have any task yet
@@ -25,21 +37,34 @@
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import TaskCard from "../components/TaskCard.vue";
-import {useStore} from "vuex";
-import {computed} from 'vue';
+import { useStore } from "vuex";
+import { computed, ref } from "vue";
 
 export default {
   name: "Home",
-  components: { TaskCard },
+  components: { TaskCard, draggable },
   setup() {
     const store = useStore();
 
-    let taskItems = computed(function(){
-      return store.getters.ongoing
+    const drag = ref(false)
+
+    let dragOptions = computed(function(){
+      return {animation: 200, ghostClass: "ghost"}
+    })
+
+    let taskItems = computed({
+      get() {
+        return store.state.taskItems;
+      },
+      set(value) {
+        return store.dispatch("moveTask", value)
+      }
     });
-    return {taskItems}
-  }
+    
+    return { taskItems, drag, dragOptions };
+  },
 };
 </script>
 
@@ -69,9 +94,15 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
 }
+
 </style>

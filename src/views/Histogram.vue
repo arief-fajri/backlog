@@ -1,6 +1,6 @@
 <template>
   <div class="histogram">
-    <TimeLine :items="taskItems" />
+    <TimeLine :items="completeItems" />
   </div>
 </template>
 
@@ -15,11 +15,11 @@ export default {
   setup() {
     const store = useStore();
 
-    let taskItems = computed(function(){
-      return store.getters.complete
+    let completeItems = computed(function(){
+      return store.state.completeItems
     });
 
-    return {taskItems}
+    return {completeItems}
   }
 };
 </script>
